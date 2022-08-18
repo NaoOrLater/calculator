@@ -1,0 +1,44 @@
+* {
+    border: 2px solid black;
+  }
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+h1 {
+    text-align: center;
+}
+
+#frame {
+    height: 600px;
+    width: 400px;
+    border: 10px solid grey;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+#frame .display {
+    flex: 3;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+#frame .clear {
+    flex: 1;
+}
+
+#frame .buttons {
+    flex: 4;
+}
+
+.answer {
+ height: 40px;
+ width: 200px;
+
+}
+
+
