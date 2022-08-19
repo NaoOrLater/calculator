@@ -25,41 +25,77 @@ h1 {
 #frame .display {
     flex: 3;
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: flex-end;
     border: 10px solid black;
     border-radius: 2px;
     border-width: 4px;
 }
 
+.display .input-display {
+    height: 40px;
+    padding-top: 30px;
+    padding-right: 15px;
+    font-size: 25px;
+}
+
+.display .answer-display {
+    height: 60px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    font-size: 30px;
+    font-weight: bold;
+    padding-right: 10px;
+    padding-bottom: 10px;
+}
+
 #frame .clear {
     flex: 1;
+    display: flex;
+}
+
+.clear button {
+    flex: 1;
+    font-size: large;
+    font-weight: bold;
+}
+
+.clear .clear-button {
+    background-color: #f52727;
+    color: white;
+}
+
+.clear .reset-button {
+    background-color: orange;
+    color: white;
 }
 
 #frame .buttons {
     flex: 4;
 }
 
-.answer {
+.answer-display {
  height: 5;
  width: 200px;
-
 }
 
 .buttons {
     display: flex;
 }
 
-/* .buttons button{
-    width: 40px;
-    height: auto;
-    margin: 4px;
-} */
-
 .number-buttons {
     flex: 2;
     display: flex;
     flex-wrap: wrap;
+
+}
+
+.number-buttons .equal {
+    background-color: green;
+    color: white;
+    font-weight: bold;
 
 }
 
