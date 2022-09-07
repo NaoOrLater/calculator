@@ -26,3 +26,8 @@ function operate (operator, num1, num2) {
         return divide(num1,num2);
     }
 };
+
+const inputDisplay = document.querySelector(".input-display");
+const buttons = document.querySelector('.buttons');
+const calcButtons = Array.from(buttons.querySelectorAll('button'));
+console.log(calcButtons);
