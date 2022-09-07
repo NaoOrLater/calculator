@@ -31,3 +31,8 @@ const inputDisplay = document.querySelector(".input-display");
 const buttons = document.querySelector('.buttons');
 const calcButtons = Array.from(buttons.querySelectorAll('button'));
 
+calcButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+        inputDisplay.textContent = `${button.textContent}`;
+    });
+});
