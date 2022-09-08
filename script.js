@@ -34,9 +34,9 @@ const calcButtons = Array.from(buttons.querySelectorAll('button'));
 function buttonToDisplay() { 
     calcButtons.forEach((button) => {
         button.addEventListener('click', () => {
-            inputDisplay.textContent = `${button.textContent}`;
-            value = parseInt(button.textContent);
-            alert(value);
+            inputDisplay.textContent += `${button.textContent}`;
+            value = parseInt(inputDisplay.textContent);
+            return value;
         });
     });
 };
