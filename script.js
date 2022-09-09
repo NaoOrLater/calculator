@@ -27,18 +27,36 @@ function operate (operator, num1, num2) {
     }
 };
 
-const inputDisplay = document.querySelector(".input-display");
-const buttons = document.querySelector('.buttons');
-const calcButtons = Array.from(buttons.querySelectorAll('button'));
+const answerDisplay = document.querySelector(".answer-display");
+const inputDisplay = document.querySelector('.input-display');
+const numbers = document.querySelector('.number-buttons');
+const numberButtons = Array.from(numbers.querySelectorAll('button'));
 
-function buttonToDisplay() { 
-    calcButtons.forEach((button) => {
+const operators = document.querySelector('.operators');
+const operatorButtons = Array.from(operators.querySelectorAll('button'));
+
+
+function numberToDisplay() { 
+    numberButtons.forEach((button) => {
         button.addEventListener('click', () => {
-            inputDisplay.textContent += `${button.textContent}`;
-            value = parseInt(inputDisplay.textContent);
+            answerDisplay.textContent += `${button.textContent}`;
+            value = parseInt(answerDisplay.textContent);
             return value;
         });
     });
 };
 
-buttonToDisplay();
+function operatorToDisplay () {
+    operatorButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            if (answerDisplay.textContent != '') {
+                currentValue = answerDisplay.textContent += `${button.textContent}`;
+                inputDisplay.textContent += currentValue;
+                answerDisplay.textContent = '';
+            };
+        });
+    });
+};
+
+numberToDisplay();
+operatorToDisplay();
