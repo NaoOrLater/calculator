@@ -45,6 +45,7 @@ function numberToDisplay() {
         });
     });
 };
+numberToDisplay();
 
 function operatorToDisplay () {
     operatorButtons.forEach((button) => {
@@ -57,6 +58,13 @@ function operatorToDisplay () {
         });
     });
 };
-
-numberToDisplay();
 operatorToDisplay();
+
+function resetButton () {
+    const reset = document.querySelector('.reset-button');
+    reset.addEventListener('click', () => {
+        answerDisplay.textContent = '';
+        inputDisplay.textContent = '';
+    });
+};
+resetButton();
