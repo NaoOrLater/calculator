@@ -46,6 +46,7 @@ function numberToDisplay() {
         });
     });
 };
+numberToDisplay();
 
 function operatorToDisplay () {
     operatorButtons.forEach((button) => {
@@ -58,7 +59,9 @@ function operatorToDisplay () {
         });
     });
 };
+operatorToDisplay();
 
+<<<<<<< HEAD
 // Next function to make is for the equal sign and for having the input display show the full equation
 
 // Maybe this function can be used to check if the displays already contains an equal and decimal and alert if it does
@@ -78,3 +81,13 @@ function operatorToDisplay () {
 numberToDisplay();
 operatorToDisplay();
 equalButton();
+=======
+function resetButton () {
+    const reset = document.querySelector('.reset-button');
+    reset.addEventListener('click', () => {
+        answerDisplay.textContent = '';
+        inputDisplay.textContent = '';
+    });
+};
+resetButton();
+>>>>>>> 236a43e7dc6a44e53a3c5913c9ffb535501c7f57
