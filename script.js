@@ -31,6 +31,7 @@ const answerDisplay = document.querySelector(".answer-display");
 const inputDisplay = document.querySelector('.input-display');
 const numbers = document.querySelector('.number-buttons');
 const numberButtons = Array.from(numbers.querySelectorAll('button'));
+const equal = numbers.querySelector('.equal');
 
 const operators = document.querySelector('.operators');
 const operatorButtons = Array.from(operators.querySelectorAll('button'));
@@ -50,13 +51,30 @@ function operatorToDisplay () {
     operatorButtons.forEach((button) => {
         button.addEventListener('click', () => {
             if (answerDisplay.textContent != '') {
-                currentValue = answerDisplay.textContent += `${button.textContent}`;
-                inputDisplay.textContent += currentValue;
+                currentValueInputDisplay = answerDisplay.textContent += `${button.textContent}`;
+                inputDisplay.textContent += currentValueInputDisplay;
                 answerDisplay.textContent = '';
             };
         });
     });
 };
 
+// Next function to make is for the equal sign and for having the input display show the full equation
+
+// Maybe this function can be used to check if the displays already contains an equal and decimal and alert if it does
+// function alertDuplicateSigns () {
+//     equal.addEventListener('click', () => {
+//         if (inputDisplay.textContent.includes('=') === true || 
+//             inputDisplay.textContent.includes('.') === true || 
+//             answerDisplay.textContent.includes('=') === true|| 
+//             answerDisplay.textContent.includes('.') === true) {
+//                 inputDisplay.textContent += answerDisplay.textContent;
+//                 answerDisplay.textContent = '';
+//                 inputDisplay.textContent.replace('=', '');
+//         }
+//     })
+// };
+
 numberToDisplay();
 operatorToDisplay();
+equalButton();
