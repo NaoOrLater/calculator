@@ -20,9 +20,9 @@ function operate (operator, num1, num2) {
         return add(num1, num2);
     } else if (operator == '-') {
         return subtract(num1, num2);
-    } else if (operator == '*') {
+    } else if (operator == '×') {
         return multiple(num1, num2);
-    } else if (operator == '/') {
+    } else if (operator == '÷') {
         return divide(num1,num2);
     }
 };
@@ -40,9 +40,9 @@ const operatorButtons = Array.from(operators.querySelectorAll('button'));
 function numberToDisplay() { 
     numberButtons.forEach((button) => {
         button.addEventListener('click', () => {
-            answerDisplay.textContent += `${button.textContent}`;
-            value = parseInt(answerDisplay.textContent);
-            return value;
+            if (button.textContent != '=') {
+                answerDisplay.textContent += `${button.textContent}`;
+            }
         });
     });
 };
@@ -78,9 +78,6 @@ operatorToDisplay();
 //     })
 // };
 
-numberToDisplay();
-operatorToDisplay();
-equalButton();
 
 function resetButton () {
     const reset = document.querySelector('.reset-button');
@@ -91,3 +88,16 @@ function resetButton () {
 };
 resetButton();
 
+function equalsTo() {
+    const equalsButtons = document.querySelector('.equal');
+    equalsButtons.addEventListener('click', () => {
+        const num1 = parseInt(inputDisplay.textContent.slice(0,-1)); 
+        const operator = inputDisplay.textContent.slice(-1);
+        const num2 = parseInt(answerDisplay.textContent);
+        const answer = operate(operator, num1, num2);
+        inputDisplay.textContent += num2;
+        answerDisplay.textContent = answer;
+    });
+};
+
+equalsTo();
