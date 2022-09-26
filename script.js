@@ -77,6 +77,10 @@ function operatorToDisplay () {
                 newTotal = answerDisplay.textContent;
                 answerDisplay.textContent = '';
                 inputDisplay.textContent = `${newTotal}${button.textContent}`;
+            } else if (inputDisplay.textContent.split('').includes('=') === false && answerDisplay.textContent != '' && inputDisplay.textContent != '' ) {
+                equalsTo();
+                inputDisplay.textContent = `${answerDisplay.textContent}${button.textContent}`;
+                answerDisplay.textContent = '';
             } else {
                 currentValueInputDisplay = answerDisplay.textContent += `${button.textContent}`;
                 inputDisplay.textContent += currentValueInputDisplay;
