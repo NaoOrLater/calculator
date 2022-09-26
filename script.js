@@ -32,10 +32,11 @@ const inputDisplay = document.querySelector('.input-display');
 const numbers = document.querySelector('.number-buttons');
 const numberButtons = Array.from(numbers.querySelectorAll('button'));
 const equal = numbers.querySelector('.equal');
+const equalsButtons = document.querySelector('.equal');
 
 const operators = document.querySelector('.operators');
 const operatorButtons = Array.from(operators.querySelectorAll('button'));
-
+const operatorSigns = operatorButtons.map(operator => operator.textContent).join('');
 
 function numberToDisplay() { 
     numberButtons.forEach((button) => {
@@ -48,10 +49,35 @@ function numberToDisplay() {
 };
 numberToDisplay();
 
+function resetButton () {
+    const reset = document.querySelector('.reset-button');
+    reset.addEventListener('click', () => {
+        answerDisplay.textContent = '';
+        inputDisplay.textContent = '';
+    });
+};
+resetButton();
+
+function equalsTo() {
+        const num1 = parseInt(inputDisplay.textContent.slice(0,-1)); 
+        const operator = inputDisplay.textContent.slice(-1);
+        const num2 = parseInt(answerDisplay.textContent);
+        const answer = operate(operator, num1, num2);
+        inputDisplay.textContent += `${num2}=`;
+        answerDisplay.textContent = answer;
+};
+
+equalsButtons.addEventListener('click', equalsTo)
+
 function operatorToDisplay () {
     operatorButtons.forEach((button) => {
         button.addEventListener('click', () => {
-            if (answerDisplay.textContent != '') {
+            //Find a way to refactor this (DRY)
+            if (inputDisplay.textContent.split('').includes('=') === true) {
+                newTotal = answerDisplay.textContent;
+                answerDisplay.textContent = '';
+                inputDisplay.textContent = `${newTotal}${button.textContent}`;
+            } else {
                 currentValueInputDisplay = answerDisplay.textContent += `${button.textContent}`;
                 inputDisplay.textContent += currentValueInputDisplay;
                 answerDisplay.textContent = '';
@@ -60,9 +86,6 @@ function operatorToDisplay () {
     });
 };
 operatorToDisplay();
-
-
-// Next function to make is for the equal sign and for having the input display show the full equation
 
 // Maybe this function can be used to check if the displays already contains an equal and decimal and alert if it does
 // function alertDuplicateSigns () {
@@ -78,26 +101,3 @@ operatorToDisplay();
 //     })
 // };
 
-
-function resetButton () {
-    const reset = document.querySelector('.reset-button');
-    reset.addEventListener('click', () => {
-        answerDisplay.textContent = '';
-        inputDisplay.textContent = '';
-    });
-};
-resetButton();
-
-function equalsTo() {
-    const equalsButtons = document.querySelector('.equal');
-    equalsButtons.addEventListener('click', () => {
-        const num1 = parseInt(inputDisplay.textContent.slice(0,-1)); 
-        const operator = inputDisplay.textContent.slice(-1);
-        const num2 = parseInt(answerDisplay.textContent);
-        const answer = operate(operator, num1, num2);
-        inputDisplay.textContent += num2;
-        answerDisplay.textContent = answer;
-    });
-};
-
-equalsTo();
