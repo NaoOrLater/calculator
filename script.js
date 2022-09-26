@@ -59,9 +59,9 @@ function resetButton () {
 resetButton();
 
 function equalsTo() {
-        const num1 = parseInt(inputDisplay.textContent.slice(0,-1)); 
+        const num1 = parseFloat(inputDisplay.textContent.slice(0,-1), 10); 
         const operator = inputDisplay.textContent.slice(-1);
-        const num2 = parseInt(answerDisplay.textContent);
+        const num2 = parseFloat(answerDisplay.textContent, 10);
         const answer = operate(operator, num1, num2);
         inputDisplay.textContent += `${num2}=`;
         answerDisplay.textContent = answer;
