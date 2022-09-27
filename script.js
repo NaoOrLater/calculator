@@ -11,7 +11,11 @@ function multiple(num1, num2) {
 };
 
 function divide(num1, num2) {
+    if (num2 === 0) {
+       alert(`You can't divide by zero silly!`)
+    } else {
     return num1/num2;
+    }
 };
 
 //May want to find a way to accept operator argument as a character rather as a string
@@ -59,20 +63,30 @@ function resetButton () {
 resetButton();
 
 function equalsTo() {
-        const num1 = parseFloat(inputDisplay.textContent.slice(0,-1), 10); 
+        const num1 = parseFloat(inputDisplay.textContent.slice(0,-1)); 
         const operator = inputDisplay.textContent.slice(-1);
-        const num2 = parseFloat(answerDisplay.textContent, 10);
+        const num2 = parseFloat(answerDisplay.textContent);
         const answer = operate(operator, num1, num2);
+    if (isNaN(num2) === false) {
         inputDisplay.textContent += `${num2}=`;
         answerDisplay.textContent = answer;
-};
+    } else {
+        alert('Error');
+    }
+        };
 
-equalsButtons.addEventListener('click', equalsTo)
+equalsButtons.addEventListener('click', () => {
+    if (inputDisplay.textContent === '') {
+        inputDisplay.textContent = answerDisplay.textContent;
+    } else {
+        equalsTo ();
+    }
+
+});
 
 function operatorToDisplay () {
     operatorButtons.forEach((button) => {
         button.addEventListener('click', () => {
-            //Find a way to refactor this (DRY)
             if (inputDisplay.textContent.split('').includes('=') === true) {
                 newTotal = answerDisplay.textContent;
                 answerDisplay.textContent = '';
