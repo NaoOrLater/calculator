@@ -53,6 +53,26 @@ function numberToDisplay() {
 };
 numberToDisplay();
 
+function displayInputAfterEval() { 
+    numberButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            if (button.textContent != '=') {
+                if (inputDisplay.textContent.split('').includes('=') === true && 
+                (inputDisplay.textContent.split('').includes('+') === true ||
+                inputDisplay.textContent.split('').includes('-') === true ||
+                inputDisplay.textContent.split('').includes('×') === true ||
+                inputDisplay.textContent.split('').includes('÷') === true )) {
+                inputDisplay.textContent = '';
+                answerDisplay.textContent = '';
+                answerDisplay.textContent += `${button.textContent}`;
+                }
+            }
+        });
+    });
+};
+
+displayInputAfterEval();
+
 function resetButton () {
     const reset = document.querySelector('.reset-button');
     reset.addEventListener('click', () => {
