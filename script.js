@@ -12,7 +12,7 @@ function multiple(num1, num2) {
 
 function divide(num1, num2) {
     if (num2 === 0) {
-       alert(`You can't divide by zero silly!`)
+       alert(`You can't divide by zero silly!`);
     } else {
     return num1/num2;
     }
@@ -98,7 +98,12 @@ function equalsTo() {
 equalsButtons.addEventListener('click', () => {
     if (inputDisplay.textContent === '') {
         inputDisplay.textContent = answerDisplay.textContent;
-    } else {
+    } else if (inputDisplay.textContent.split('').includes('÷') === true && answerDisplay.textContent === '0') {
+        inputDisplay.textContent += answerDisplay.textContent;
+        answerDisplay.textContent = `:(`;
+        alert(`You can't divide by zero silly!`)
+    }
+    else {
         equalsTo ();
     }
 
