@@ -45,7 +45,7 @@ const operatorSigns = operatorButtons.map(operator => operator.textContent).join
 function numberToDisplay() { 
     numberButtons.forEach((button) => {
         button.addEventListener('click', () => {
-            if (button.textContent != '=') {
+            if (button.textContent != '=' && button.textContent != '.') {
                 answerDisplay.textContent += `${button.textContent}`;
             }
         });
@@ -88,7 +88,7 @@ function equalsTo() {
         const num2 = parseFloat(answerDisplay.textContent);
         const answer = operate(operator, num1, num2);
     if (isNaN(num2) === false) {
-        inputDisplay.textContent += `${num2}=`;
+        inputDisplay.textContent += `${num2} =`;
         answerDisplay.textContent = answer;
     } else {
         alert('Error');
@@ -110,10 +110,10 @@ function operatorToDisplay () {
             if (inputDisplay.textContent.split('').includes('=') === true) {
                 newTotal = answerDisplay.textContent;
                 answerDisplay.textContent = '';
-                inputDisplay.textContent = `${newTotal}${button.textContent}`;
+                inputDisplay.textContent = `${newTotal}  ${button.textContent} `;
             } else if (inputDisplay.textContent.split('').includes('=') === false && answerDisplay.textContent != '' && inputDisplay.textContent != '' ) {
                 equalsTo();
-                inputDisplay.textContent = `${answerDisplay.textContent}${button.textContent}`;
+                inputDisplay.textContent = `${answerDisplay.textContent}  ${button.textContent}`;
                 answerDisplay.textContent = '';
             } else {
                 currentValueInputDisplay = answerDisplay.textContent += `${button.textContent}`;
@@ -125,17 +125,12 @@ function operatorToDisplay () {
 };
 operatorToDisplay();
 
-// Maybe this function can be used to check if the displays already contains an equal and decimal and alert if it does
-// function alertDuplicateSigns () {
-//     equal.addEventListener('click', () => {
-//         if (inputDisplay.textContent.includes('=') === true || 
-//             inputDisplay.textContent.includes('.') === true || 
-//             answerDisplay.textContent.includes('=') === true|| 
-//             answerDisplay.textContent.includes('.') === true) {
-//                 inputDisplay.textContent += answerDisplay.textContent;
-//                 answerDisplay.textContent = '';
-//                 inputDisplay.textContent.replace('=', '');
-//         }
-//     })
-// };
-
+function oneDecimal() {
+    const decimal = document.querySelector('.decimal');
+    decimal.addEventListener('click', () => {
+        if (answerDisplay.textContent.split('').includes('.') === false) {
+            answerDisplay.textContent += '.';
+        }
+    })
+};
+oneDecimal();
