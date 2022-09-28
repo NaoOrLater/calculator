@@ -88,7 +88,7 @@ function equalsTo() {
         const num2 = parseFloat(answerDisplay.textContent);
         const answer = operate(operator, num1, num2);
     if (isNaN(num2) === false) {
-        inputDisplay.textContent += `${num2} =`;
+        inputDisplay.textContent += `${num2}=`;
         answerDisplay.textContent = answer;
     } else {
         alert('Error');
@@ -115,10 +115,10 @@ function operatorToDisplay () {
             if (inputDisplay.textContent.split('').includes('=') === true) {
                 newTotal = answerDisplay.textContent;
                 answerDisplay.textContent = '';
-                inputDisplay.textContent = `${newTotal}  ${button.textContent} `;
+                inputDisplay.textContent = `${newTotal}${button.textContent}`;
             } else if (inputDisplay.textContent.split('').includes('=') === false && answerDisplay.textContent != '' && inputDisplay.textContent != '' ) {
                 equalsTo();
-                inputDisplay.textContent = `${answerDisplay.textContent}  ${button.textContent}`;
+                inputDisplay.textContent = `${answerDisplay.textContent}${button.textContent}`;
                 answerDisplay.textContent = '';
             } else {
                 currentValueInputDisplay = answerDisplay.textContent += `${button.textContent}`;
@@ -139,3 +139,17 @@ function oneDecimal() {
     })
 };
 oneDecimal();
+
+function deleteButton () {
+    const delButton = document.querySelector('.delete-button');
+    delButton.addEventListener('click', () => {
+    if (answerDisplay.textContent !== '') {
+        let newValue = answerDisplay.textContent.split('');
+        newValue.splice(-1);
+        answerDisplay.textContent = newValue.join('');
+    }
+    })
+};
+//figure out how to remove the last element
+
+deleteButton();
