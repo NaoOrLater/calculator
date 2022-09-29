@@ -153,3 +153,10 @@ function deleteButton () {
 //figure out how to remove the last element
 
 deleteButton();
+
+window.addEventListener('keydown', function(e) {
+    const keypad = document.querySelector(`button[data-key="${e.keyCode}"]`);
+    // console.log(e.shiftKey);
+    console.log(keypad);
+    answerDisplay.textContent += keypad.textContent;
+});
