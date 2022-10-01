@@ -24,9 +24,9 @@ function operate (operator, num1, num2) {
         return add(num1, num2);
     } else if (operator == '-') {
         return subtract(num1, num2);
-    } else if (operator == '×' || operator === '*') {
+    } else if (operator == '×' || operator == '*') {
         return multiple(num1, num2);
-    } else if (operator == '÷') {
+    } else if (operator == '÷' || operator == '/') {
         return divide(num1,num2);
     }
 };
@@ -152,7 +152,7 @@ function deleteButton () {
         let newValue = answerDisplay.textContent.split('');
         newValue.splice(-1);
         answerDisplay.textContent = newValue.join('');
-    }
+        }
     })
 };
 deleteButton();
@@ -162,7 +162,7 @@ window.addEventListener('keydown', function(e) {
     console.log(e);
     // console.log(e.shiftKey);
     console.log(keypad);
-    if (e.keyCode === 48 ||
+    if (e.keyCode === 48 || //Number keys
         e.keyCode === 49 ||
         e.keyCode === 50 ||
         e.keyCode === 51 ||
@@ -175,8 +175,9 @@ window.addEventListener('keydown', function(e) {
             answerDisplay.textContent += keypad.textContent;
     //For the following operator functions for the keyboard, had to copy and paste the operatorToDisplay function for the logic and 
     //replace the button text content with the button key      
-    } else if (e.keyCode === 61 && e.shiftKey === true ||
-            e.keyCode === 56 && e.shiftKey === true) {
+    } else if (e.keyCode === 61 && e.shiftKey === true || //Addition
+            e.keyCode === 56 && e.shiftKey === true || //Multiplication
+            e.keyCode === 173 || e.keyCode === 191) { //Subtraction and Division respectively
         if (inputDisplay.textContent.split('').includes('=') === true) {
             newTotal = answerDisplay.textContent;
             answerDisplay.textContent = '';
@@ -194,6 +195,11 @@ window.addEventListener('keydown', function(e) {
             currentValueInputDisplay = answerDisplay.textContent += `${e.key}`;
             inputDisplay.textContent += currentValueInputDisplay;
             answerDisplay.textContent = '';
-    } 
+        } 
+    } else if (e.keyCode === 190) { //Decimal
+        if (answerDisplay.textContent.split('').includes('.') === false) {
+            answerDisplay.textContent += `${e.key}`;
+        };
     }
+
 });
