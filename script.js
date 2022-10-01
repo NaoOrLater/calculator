@@ -150,13 +150,40 @@ function deleteButton () {
     }
     })
 };
-//figure out how to remove the last element
-
 deleteButton();
 
 window.addEventListener('keydown', function(e) {
     const keypad = document.querySelector(`button[data-key="${e.keyCode}"]`);
+    console.log(e);
     // console.log(e.shiftKey);
     console.log(keypad);
-    answerDisplay.textContent += keypad.textContent;
+    if (e.keyCode === 48 ||
+        e.keyCode === 49 ||
+        e.keyCode === 50 ||
+        e.keyCode === 51 ||
+        e.keyCode === 52 ||
+        e.keyCode === 53 ||
+        e.keyCode === 54 ||
+        e.keyCode === 55 ||
+        e.keyCode === 56 && e.shiftKey === false ||
+        e.keyCode === 57){ 
+            answerDisplay.textContent += keypad.textContent;
+    //For the following operator functions for the keyboard, had to copy and paste the operatorToDisplay function for the logic and 
+    //replace the button text content with the button key      
+    } else if (e.keyCode === 61 && e.shiftKey === true ||
+            e.keyCode === 56 && e.shiftKey === true) {
+        if (inputDisplay.textContent.split('').includes('=') === true) {
+            newTotal = answerDisplay.textContent;
+            answerDisplay.textContent = '';
+            inputDisplay.textContent = `${newTotal}${e.key}`;
+        } else if (inputDisplay.textContent.split('').includes('=') === false && answerDisplay.textContent != '' && inputDisplay.textContent != '' ) {
+            equalsTo();
+            inputDisplay.textContent = `${answerDisplay.textContent}${e.key}`;
+            answerDisplay.textContent = '';
+        } else {
+            currentValueInputDisplay = answerDisplay.textContent += `${e.key}`;
+            inputDisplay.textContent += currentValueInputDisplay;
+            answerDisplay.textContent = '';
+    } 
+    }
 });
