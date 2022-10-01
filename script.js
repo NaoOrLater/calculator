@@ -24,7 +24,7 @@ function operate (operator, num1, num2) {
         return add(num1, num2);
     } else if (operator == '-') {
         return subtract(num1, num2);
-    } else if (operator == '×') {
+    } else if (operator == '×' || operator === '*') {
         return multiple(num1, num2);
     } else if (operator == '÷') {
         return divide(num1,num2);
@@ -116,6 +116,11 @@ function operatorToDisplay () {
                 newTotal = answerDisplay.textContent;
                 answerDisplay.textContent = '';
                 inputDisplay.textContent = `${newTotal}${button.textContent}`;
+            } else if (inputDisplay.textContent.split('').includes('+') ||
+            inputDisplay.textContent.split('').includes('-') ||
+            inputDisplay.textContent.split('').includes('×') ||
+            inputDisplay.textContent.split('').includes('÷')) {
+                return
             } else if (inputDisplay.textContent.split('').includes('=') === false && answerDisplay.textContent != '' && inputDisplay.textContent != '' ) {
                 equalsTo();
                 inputDisplay.textContent = `${answerDisplay.textContent}${button.textContent}`;
@@ -176,6 +181,11 @@ window.addEventListener('keydown', function(e) {
             newTotal = answerDisplay.textContent;
             answerDisplay.textContent = '';
             inputDisplay.textContent = `${newTotal}${e.key}`;
+        } else if (inputDisplay.textContent.split('').includes('+') ||
+        inputDisplay.textContent.split('').includes('-') ||
+        inputDisplay.textContent.split('').includes('×') ||
+        inputDisplay.textContent.split('').includes('÷')) {
+            return
         } else if (inputDisplay.textContent.split('').includes('=') === false && answerDisplay.textContent != '' && inputDisplay.textContent != '' ) {
             equalsTo();
             inputDisplay.textContent = `${answerDisplay.textContent}${e.key}`;
