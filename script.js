@@ -159,9 +159,9 @@ deleteButton();
 
 window.addEventListener('keydown', function(e) {
     const keypad = document.querySelector(`button[data-key="${e.keyCode}"]`);
-    console.log(e);
-    // console.log(e.shiftKey);
-    console.log(keypad);
+    // console.log(e);
+    // console.log(e.shiftKey); Useful to have
+    // console.log(keypad);
     if (e.keyCode === 48 || //Number keys
         e.keyCode === 49 ||
         e.keyCode === 50 ||
@@ -171,8 +171,18 @@ window.addEventListener('keydown', function(e) {
         e.keyCode === 54 ||
         e.keyCode === 55 ||
         e.keyCode === 56 && e.shiftKey === false ||
-        e.keyCode === 57){ 
+        e.keyCode === 57){
+            if (inputDisplay.textContent.split('').includes('=') === true && 
+            (inputDisplay.textContent.split('').includes('+') === true ||
+            inputDisplay.textContent.split('').includes('-') === true ||
+            inputDisplay.textContent.split('').includes('×') === true ||
+            inputDisplay.textContent.split('').includes('÷') === true )) {
+            inputDisplay.textContent = '';
+            answerDisplay.textContent = '';
+            answerDisplay.textContent += `${button.textContent}`; 
+            } else {
             answerDisplay.textContent += keypad.textContent;
+            }
     //For the following operator functions for the keyboard, had to copy and paste the previous button functions for the logic and 
     //replace the button text content with the button key. Maybe think of a more dynamic way of doing this for future projects    
     
