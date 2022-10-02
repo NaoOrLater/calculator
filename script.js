@@ -86,7 +86,7 @@ function equalsTo() {
         const num1 = parseFloat(inputDisplay.textContent.slice(0,-1)); 
         const operator = inputDisplay.textContent.slice(-1);
         const num2 = parseFloat(answerDisplay.textContent);
-        const answer = operate(operator, num1, num2);
+        const answer = operate(operator, num1, num2).toFixed(2);
     if (isNaN(num2) === false) {
         inputDisplay.textContent += `${num2}=`;
         answerDisplay.textContent = answer;
@@ -175,6 +175,7 @@ window.addEventListener('keydown', function(e) {
             answerDisplay.textContent += keypad.textContent;
     //For the following operator functions for the keyboard, had to copy and paste the operatorToDisplay function for the logic and 
     //replace the button text content with the button key      
+    
     } else if (e.keyCode === 61 && e.shiftKey === true || //Addition
             e.keyCode === 56 && e.shiftKey === true || //Multiplication
             e.keyCode === 173 || e.keyCode === 191) { //Subtraction and Division respectively
