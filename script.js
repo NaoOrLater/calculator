@@ -173,8 +173,8 @@ window.addEventListener('keydown', function(e) {
         e.keyCode === 56 && e.shiftKey === false ||
         e.keyCode === 57){ 
             answerDisplay.textContent += keypad.textContent;
-    //For the following operator functions for the keyboard, had to copy and paste the operatorToDisplay function for the logic and 
-    //replace the button text content with the button key      
+    //For the following operator functions for the keyboard, had to copy and paste the previous button functions for the logic and 
+    //replace the button text content with the button key. Maybe think of a more dynamic way of doing this for future projects    
     
     } else if (e.keyCode === 61 && e.shiftKey === true || //Addition
             e.keyCode === 56 && e.shiftKey === true || //Multiplication
@@ -201,6 +201,22 @@ window.addEventListener('keydown', function(e) {
         if (answerDisplay.textContent.split('').includes('.') === false) {
             answerDisplay.textContent += `${e.key}`;
         };
+    } else if (e.keyCode === 8) { //Backspace delete button
+        if (answerDisplay.textContent !== '') {
+            let newValue = answerDisplay.textContent.split('');
+            newValue.splice(-1);
+            answerDisplay.textContent = newValue.join('');
+        }
+    } else if (e.keyCode === 13) { //Enter evaluates 
+        if (inputDisplay.textContent === '') {
+            inputDisplay.textContent = answerDisplay.textContent;
+        } else if (inputDisplay.textContent.split('').includes('÷') === true && answerDisplay.textContent === '0') {
+            inputDisplay.textContent += answerDisplay.textContent;
+            answerDisplay.textContent = `:(`;
+            alert(`You can't divide by zero silly!`)
+        }
+        else {
+            equalsTo ();
+        }
     }
-
 });
